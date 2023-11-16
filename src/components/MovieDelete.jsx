@@ -2,6 +2,15 @@ import React, { useState } from "react";
 import MovieNavbar from "./MovieNavbar";
 
 const MovieDelete = () => {
+  const [inputData, changeInputData] = useState({
+    movie: "",
+  });
+  const inputHandler = (event) => {
+    changeInputData({ ...inputData, [event.target.name]: event.target.value });
+  };
+  const readValue = () => {
+    console.log(inputData);
+  };
   return (
     <div>
       <MovieNavbar />
@@ -13,10 +22,18 @@ const MovieDelete = () => {
                 <label htmlFor="" className="form-label">
                   Delete Movie
                 </label>
-                <input type="text" className="form-control" />
+                <input
+                  type="text"
+                  className="form-control"
+                  name="movie"
+                  value={inputData.movie}
+                  onChange={inputHandler}
+                />
               </div>
               <div className="col col-12">
-                <button className="btn btn-danger">Danger</button>
+                <button onClick={readValue} className="btn btn-danger">
+                  Danger
+                </button>
               </div>
             </div>
           </div>

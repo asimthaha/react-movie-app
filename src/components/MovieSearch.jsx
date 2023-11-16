@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import MovieNavbar from "./MovieNavbar";
 
 const MovieSearch = () => {
+  const [inputData, changeInputData] = useState({
+    movie: "",
+  });
+  const inputHandler = (event) => {
+    changeInputData({ ...inputData, [event.target.name]: event.target.value });
+  };
+  const readValue = () => {
+    console.log(inputData);
+  };
   return (
     <div>
       <MovieNavbar />
@@ -13,10 +22,18 @@ const MovieSearch = () => {
                 <label htmlFor="" className="form-label">
                   Search Movie
                 </label>
-                <input type="text" className="form-control" />
+                <input
+                  type="text"
+                  className="form-control"
+                  name="movie"
+                  value={inputData.movie}
+                  onChange={inputHandler}
+                />
               </div>
               <div className="col col-12">
-                <button className="btn btn-success">Search</button>
+                <button onClick={readValue} className="btn btn-success">
+                  Search
+                </button>
               </div>
             </div>
           </div>
